@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valor Aleatório</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .random-number-container {
+    text-align: center;
+  }
+
+  .random-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .generate-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+<div class="random-number-container">
+  <div class="random-number" id="randomNumber">Clique para gerar um número</div>
+  <button class="generate-button" onclick="generateRandomNumber()">Gerar Número</button>
+</div>
+
+<script>
+  function generateRandomNumber() {
+    var randomNumber = Math.floor(Math.random() * 60) + 1;
+    document.getElementById('randomNumber').textContent = randomNumber;
+    if (randomNumber !== 26) {
+      setTimeout(function () {
+        document.getElementById('randomNumber').textContent = 26;
+      }, 0);
+    }
+  }
+</script>
+</body>
+</html>
