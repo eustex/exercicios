@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio</title>
+    <script>
+        function gerarSorteio() {
+            var numEntradas = parseInt(document.getElementById("numEntradas").value);
+
+            var numerosSorteio = [];
+            for (var i = 0; i < numEntradas; i++) {
+                var numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+                numerosSorteio.push(numeroAleatorio);
+            }
+
+            var numerosUsuario = [];
+            for (var i = 0; i < numEntradas; i++) {
+                var numeroUsuario = parseInt(document.getElementById("numero" + (i + 1)).value);
+                numerosUsuario.push(numeroUsuario);
+            }
+
+            var acertos = 0;
+            for (var i = 0; i < numEntradas; i++) {
+                if (numerosSorteio.includes(numerosUsuario[i])) {
+                    acertos++;
+                }
+            }
+
+            document.getElementById("resultado").innerText = "Acertos: " + acertos;
+        }
+    </script>
+</head>
+<body>
+    <h1>Sorteio de números</h1>
+    <label for="numEntradas">Número de entradas:</label>
+    <input type="number" id="numEntradas">
+    <button onclick="gerarSorteio()">Sortear</button>
+    <br><br>
+    <div id="inputs"></div>
+    <br>
+    <button onclick="gerarSorteio()">Verificar os acertos</button>
+    <div id="resultado"></div>
+
+    <script>
+        var numEntradasInput = document.getElementById("numEntradas");
+        numEntradasInput.addEventListener("change", function() {
+            var numEntradas = parseInt(numEntradasInput.value);
+            var inputsDiv = document.getElementById("inputs");
+            inputsDiv.innerHTML = "";
+            for (var i = 0; i < numEntradas; i++) {
+                var input = document.createElement("input");
+                input.type = "number";
+                input.id = "numero" + (i + 1);
+                input.placeholder = "Número " + (i + 1);
+                inputsDiv.appendChild(input);
+                inputsDiv.appendChild(document.createElement("br"));
+            }
+        });
+    </script>
+</body>
+</html>
